@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="surveyStyle.css">
+    <title>Taqueria Jimenez</title>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1 id="title" class="">¿Que te apetece comer hoy?</h1>
+        <p id="description">Elige tus ingredientes favoritos y a disfrutar!</p>
+    </header>
+    <form action="#">
+        <div class="form-group">
+            <label for="name">¿Para quien es este manjar?</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div class="form-group">
+
+        </div>
+        <div class="form-group">
+            <p>Elige entre nuestras tortillas:</p>
+            <label>
+                <input type="radio" id="tortilla" name="tortilla" value="tortilla-suave" class="input-radio">
+                Tortilla suave, la mas típica.
+            </label>
+            <label>
+                <input type="radio" id="tortilla-queso" name="tortilla" value="tortilla-queso" class="input-radio">
+                Tortilla con queso gratinado
+            </label>
+            <label>
+                <input type="radio" id="tortilla-cruj" name="tortilla" value="tortilla-cruj" class="input-radio">
+                Tortilla crujiente
+            </label>
+            <label>
+                <input type="radio" id="tortilla-extracruj" name="tortilla" value="tortilla-extracruj"
+                       class="input-radio">
+                Tortilla extra-crujiente
+            </label>
+
+        </div>
+
+        <div class="form-group">
+            <p>Elige una de nuestras carnes:</p>
+            <label>
+                <input type="radio" id="pollo" name="carne" value="pollo" class="input-radio">
+                Pollo
+            </label>
+            <label>
+                <input type="radio" id="carne-picada" name="carne" value="carne-picada" class="input-radio">
+                Carne picada
+            </label>
+            <label>
+                <input type="radio" id="cordero" name="carne" value="cordero" class="input-radio">
+                Cordero desmenuzado
+            </label>
+            <label>
+                <input type="radio" id="vegetariano" name="carne" value="vegetariano" class="input-radio">
+                Vegetariano
+            </label>
+
+        </div>
+
+        <div class="form-group">
+            <p>Ahora viene la gochada, elige entre todos los ingredientes que tenemos, todos los ingredientes que
+                quieras</p>
+            <label>
+                <input type="checkbox" name="ingredientes" value="lechuga" class="input-checkbox">
+                Lechuga
+            </label>
+            <label>
+                <input type="checkbox" name="ingredientes" value="queso" class="input-checkbox">
+                Queso
+            </label>
+            <label>
+                <input type="checkbox" name="ingredientes" value="crema agria" class="input-checkbox">
+                Crema agria
+            </label>
+            <label>
+                <input type="checkbox" name="ingredientes" value="tomate" class="input-checkbox">
+                Tomate
+            </label>
+            <label>
+                <input type="checkbox" name="ingredientes" value="picadita" class="input-checkbox">
+                Picadita
+            </label>
+        </div>
+
+        <div class="form-group">
+            <p>Y para terminar, los complementos</p>
+            <label>
+                <input type="checkbox" name="complementos" value="jalapeños" class="input-checkbox">
+                Jalapeños
+            </label>
+            <label>
+                <input type="checkbox" name="complementos" value="habas-negras" class="input-checkbox">
+                Habas negras
+            </label>
+            <label>
+                <input type="checkbox" name="complementos" value="arroz" class="input-checkbox">
+                Arroz
+            </label>
+            <label>
+                <input type="checkbox" name="complementos" value="extra-pic" class="input-checkbox">
+                Salsa extra picante
+            </label>
+        </div>
+        <div class="form-group">
+            <p>Comentanos lo que necesites</p>
+            <textarea name=comentarios" id="comentarios" cols="30" rows="10" placeholder="Podemos hacer algo mas por ti?" class="input-textarea"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="submit-button">Realizar pedido</button>
+        </div>
+
+
+    </form>
+</div>
+</body>
+</html>

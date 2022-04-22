@@ -1,0 +1,46 @@
+body {
+    background-image: url("img/taco.png");
+    font-size: 1.5rem;
+}
+
+header {
+    color: white;
+    background: black;
+    opacity: 0.8;
+    border-radius: 10px;
+    text-align: center;
+}
+div {
+    display: block;
+}
+.container {
+    width: 100%;
+    margin: 3.125rem 3.125rem 0 3.125rem;
+    max-width: 80%;
+    align-items: center;
+    color: white;
+}
+label {
+    display: flex;
+    align-items: center;
+}
+
+form {
+    background: black;
+    opacity: 0.9;
+    border-radius: 10px;
+    align-items: center;
+    padding: 30px;
+}
+.form-group {
+    margin: 0 auto 1.25rem auto;
+}
+.input-textarea {
+    width: 100%;
+}
+.submit-button {
+    background: green;
+    width: 100%;
+    font-size: 1.5rem;
+    color: inherit;
+}
