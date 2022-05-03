@@ -1,0 +1,42 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-size: 20pt;
+}
+
+#resultado {
+    font-size: 2.5em;
+    padding: 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    align-items: center;
+}
+
+.container > .controladores {
+    flex-direction: row;
+    padding: 10px;
+    max-width: 50vw;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 4px;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.parametros {
+    display: block;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+

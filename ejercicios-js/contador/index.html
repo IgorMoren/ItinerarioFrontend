@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Contador</title>
+</head>
+<body>
+<div class="container">
+    <p class="container" id="resultado">
+        0
+    </p>
+
+    <div id="contador" class="contador container">
+        <h4>Setup</h4>
+        <div class="container controladores">
+
+            <button class="btn btn-start"
+                    onclick="start()">
+                Start
+            </button>
+
+            <button class="btn btn-stop"
+                    onclick="stop()"
+                    disabled>
+                Pause
+            </button>
+
+            <button class="btn btn-reset"
+                    onclick="reset()">
+                Reset
+            </button>
+        </div>
+    </div>
+
+    <div id="up-down" class="up-down container">
+        <h4>Count</h4>
+        <div class="container controladores">
+
+            <button
+                    class="btn btn-controller"
+                    onclick="plus()">
+                Count up
+            </button>
+
+            <button class="btn btn-controller"
+                    onclick="minus()">
+                Count down
+            </button>
+        </div>
+    </div>
+
+    <div class="parametros container">
+        <form action="#">
+            <label for="numero-base">El contador comenzara en:</label>
+            <input id="numero-base" type="number" value="0">
+            <label for="step">Pasos </label>
+            <input id="step" type="number" value="1">
+
+        </form>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
