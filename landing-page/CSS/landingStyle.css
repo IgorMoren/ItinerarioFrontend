@@ -1,0 +1,227 @@
+:root {
+    --lightyellow: rgb(255, 239, 130);
+    --yellow: rgb(239, 211, 69);
+    --lightgreen: rgb(186, 189, 66);
+    --green: rgb(130, 149, 75);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+    color: black;
+}
+
+body {
+
+    background-color: var(--lightgreen);
+}
+
+
+
+header {
+    display: flex;
+    background-color: var(--yellow);
+    height: 70px;
+    /* Ocupando siempre el 100 del navegador */
+    width: 100%;
+    top: 0px;
+    box-shadow: 0 2px 10px black;
+    position: fixed;
+
+}
+
+
+#welcome-section {
+    margin-top: 200px;
+    width: 100%;
+    text-align: center;
+    background-size: auto;
+}
+
+#welcome-section h1 {
+    font-family: 'Merriweather Sans', sans-serif;
+    text-shadow: 1px 1px var(--lightyellow);
+    margin-bottom: 25px;
+}
+
+#welcome-section p {
+    text-shadow: 0px 0px black 10px;
+}
+
+/* Para establecerlo como */
+#logo img {
+    height: 100%;
+}
+
+/* Trabajemos aqui con la el menu */
+
+#nav-bar {
+    /* Queremos que ocupe el 100 para que luego su ul  */
+    width: 100%;
+    
+}
+
+/* Vuelta a indicarle que es un contenedor flex para con
+flex-direction  */
+#nav-bar ul {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* Centramos los elementos li respecto a ul */
+    align-items: center;
+    /* Los desplazamos a lo largo del eje principal */
+    justify-content: flex-end;
+
+}
+
+.nav-item {
+    height: 100%;
+    list-style: none;
+    /* flex bajo flex bajo flex... para centrar los nav-link
+    tiene que existir una manera mejor */
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 1.5rem;
+    /* Padding para hacer mas grande el area "clickable" */
+    padding: 20px;
+    color: black;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: background-color 1.5s;
+    transition: color 1.5s;
+
+
+}
+
+.nav-item :hover {
+    background-color: rgba(0, 0, 0, .7);
+    color: var(--green);
+    box-shadow: 0 2px 10px black;
+    ;
+}
+
+precios .background-wave {
+    position: absolute;
+    /* Asegurarnos de que esta siempre detras */
+    z-index: -1;
+    top: 0;
+}
+
+.section-background {
+    background-color: var(--lightyellow);
+}
+
+#caracteristicas {
+    padding: 30px;
+    text-align: center;
+}
+
+
+#como-funciona {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#como-funciona p {
+    margin-bottom: 10px;
+}
+
+iframe {
+    max-width: 560px;
+    width: 100%;
+
+}
+
+.desc {
+    margin: 20px 0;
+}
+
+.desc h2 {
+    margin: auto;
+}
+
+#precios {
+    display: flex;
+    margin: 30px 60px 0px;
+    justify-content: center;
+}
+
+.producto {
+    border: 1px solid black;
+    border-radius: 3px;
+    margin: 0 20px 100px 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 20vw;
+    background-color: var(--green);
+}
+
+.producto h2 {
+    margin: 10px 0;
+}
+
+.producto li {
+    list-style: none;
+    padding: 2px;
+}
+
+.level {
+    background-color: var(--lightgreen);
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0px 1px 3px 0px #000;
+    font-family: 'Merriweather Sans', sans-serif;
+    ;
+}
+
+.btn {
+    border: none;
+    margin: 10px 0px;
+    padding: 7px 10px;
+    background-color: var(--yellow);
+    cursor: pointer;
+}
+
+p {
+    text-shadow: 0px 0px 200px rgba(76, 255, 164, 0.45);
+}
+
+
+@media (max-width: 900px) {
+    #precios {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .producto {
+        width: 180px;
+    }
+}
+
+@media (max-width: 650px ){
+    header {
+        height: 220px;
+    }
+    #nav-bar {
+        display: flex;
+        flex-direction: column;
+    }
+    #nav-bar ul {
+        flex-direction: column;
+        height: auto;
+    }
+    #logo {
+        display: none;
+    }
+    #welcome-section {
+        margin-top: 250px;
+    }
+
+}

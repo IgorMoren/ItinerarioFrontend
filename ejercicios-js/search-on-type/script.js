@@ -1,9 +1,13 @@
 //Recogemos el campo donde insertaremos lo obtenido del fetch
 const HTMLResponse = document.querySelector('#app');
 
+//CONST para formatear el HTML con elementos html
+const ul = document.createElement('ul');
+
+
 //Variables antes de la funcion
-let timer;                //identificador del timer
-let intervalo = 500;  // 0.5 segundo
+let timer;                  //Identificador del timer
+let intervalo = 500;        // 0.5 segundo
 let miInput = document.getElementById('resultado');
 
 //on keyup comienza la cuenta atras
@@ -18,9 +22,8 @@ miInput.addEventListener('keyup', () => {
 
 //INTENTO 2
 
-const selectSpain = document.getElementById('spain');
 
-selectSpain.addEventListener( 'click', () =>{
+/* selectSpain.addEventListener( 'click', () =>{
     pais = selectSpain.id;
     console.log(selectSpain);
     selectSpain.className = 'buttonstyle';
@@ -44,23 +47,37 @@ selectArgentina.addEventListener( 'click', () =>{
     selectSpain.className = '';
     selectPeru.className = '';
     selectArgentina.className = 'buttonstyle';
-} )
+} ) */
 
 
 //INTENTO 1
-/* const selectPais = document.getElementsByName('pais');
+const selectPais = document.getElementsByName('pais');
+
+for (let i = 0; i < selectPais.length; i++) {
 
 
-
-for (let i = 0; selectPais.length; i++){
-    
-    selectPais[i].addEventListener( 'click' , () => {
+    selectPais[i].addEventListener('click', () => {
         pais = selectPais[i].value;
-    } , )
-} */
+        // console.log(selectPais);
+        let newSelectPais = Array.from(selectPais);
+        //console.log(newSelectPais);
+        let result = newSelectPais.filter(item => item == newSelectPais[i]);
+        //console.log(selectPais[i]);
+        console.log(result);
+        for (let f = 0; f < selectPais.length; f++) {
+            console.log(selectPais[f])
+            if (result[0] == selectPais[f]) {
+                /* TODO */
+                console.log('estamos dentro');
+            }
+        }
 
 
-function myFunction() {
+    })
+}
+
+/* METODO FORMATEAR EL HTML Con elementos de HTML */
+/* function myFunction() {
    
     const API_URL = `http://universities.hipolabs.com/search?country=${pais}&name=`;
 
@@ -72,12 +89,40 @@ function myFunction() {
         .then((response) => {
             response.json()
                 .then(data => {
+
+                    data.forEach(element => {
+                        let elem = document.createElement('li')
+                        elem.appendChild(
+                            document.createTextNode(`${element.name}`)
+                        );
+                        ul.appendChild(elem);
+                    });
+                    HTMLResponse.appendChild(ul);
+                })
+        });
+
+} */
+
+
+// MANERAS FORMATEAR EL HTML:  Creacion del html con string's
+function myFunction() {
+
+    const API_URL = `http://universities.hipolabs.com/search?country=${pais}&name=`;
+
+    var input = document.getElementById('resultado').value;
+
+    HTMLResponse.innerHTML = '';
+
+    fetch(`${API_URL}${input}`)
+        .then((response) => {
+            response.json()
+                .then(data => {
                     for (let i = 0; i < data.length; i++) {
-                                              
+
                         const tpl = `<li> ${data[i]['name']} </li>`;
                         HTMLResponse.innerHTML += `<ul>${tpl}</ul>`;
                         console.log(data[i]['name']);
-                        
+
                     }
                 })
         });

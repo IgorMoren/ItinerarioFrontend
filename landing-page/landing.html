@@ -1,89 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="landingStyle.css">
+    <link rel="stylesheet" href="CSS/landingStyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Square+Peg&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Merriweather+Sans:ital@1&family=Roboto&display=swap"
+        rel="stylesheet">
     <title>Organic alarm clock</title>
 </head>
+
 <body>
-<!--Envoltura de toda la pagina-->
-<div class="page-wrapper">
+
     <header id="header">
-        <div class="logo">
-            <img id="header-img" src="img/rooster_logo.png" alt="logo">
+        <div id="logo">
+            <img id="header-img" src="css/img/gallo.png" alt="logo">
 
         </div>
         <!--    Barra de navegación-->
         <nav id="nav-bar">
-
             <ul>
-                <li>
+                <li class="nav-item" href="">
                     <a class='nav-link' href="#caracteristicas">Caracteristicas</a>
                 </li>
 
-                <li>
+                <li class="nav-item">
                     <a class='nav-link' href="#como-funciona">¿Como funciona?</a>
                 </li>
 
-                <li>
+                <li class="nav-item">
                     <a class='nav-link' href="#precios">Precios</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <div class="container"></div>
-    <section id="bienvenida">
-        <h2>¡¡Organic alarm clocks!!</h2>
-    </section>
+    <div id="welcome-section">
+        <h1>Organic alarm clocks</h1>
+        <p>Prueba nuestros dispositivos</p>
+    </div>
+    <div class="background-wave" style="height: 200px; overflow: hidden;"><svg viewBox="0 0 500 150"
+            preserveAspectRatio="none" style="height: 100%; width: 100%;">
+            <path d="M-1.12,35.05 C193.00,275.83 469.52,-160.34 519.19,172.22 L500.00,150.00 L0.00,150.00 Z"
+                style="stroke: none; fill: rgb(255, 239, 130);"></path>
+        </svg>
+    </div>
     <!--Contenedor para las secciones posteriores-->
-    <div class="container">
+    <div class="general-container section-background">
+        <div class="section-background" id="caracteristicas">
 
-        <section id="caracteristicas">
-            <div class="grid">
-                <div class="desc">
-                    <h2>No necesitas programarlo</h2>
-                    <p>Nuestros despertadores no necesitan ser programados. ¡Esta gestión se realizo hace miles de
-                        años!</p>
-                </div>
-            </div>
-            <div class="grid">
-                <div class="desc">
-                    <h2>Olvidate de cables</h2>
-                    <p>Sin necesidad de conexion electrica puedes llevarlo ha cualquier lugar sin preocuparte por que se
-                        te ha olvidado la power bank.</p>
-                </div>
-            </div>
-            <div class="grid">
-                <div class="desc">
-                    <h2>¡Envio inmediato!</h2>
-                    <p>El pedido tardara en prepararse aproximadamente 21 dias y el pedido te llegara VOLANDO! <i>(Perdon
-                        por esta...)</i></p>
-                </div>
-            </div>
-        </section>
+            <div class="desc">
+                <h2>No necesitas programarlo</h2>
+                <p>Nuestros despertadores no necesitan ser programados. ¡Esta gestión se realizo hace miles de
+                    años!</p>
 
-        <section id="como-funciona">
-            <iframe width="1520" height="506" src="https://www.youtube.com/embed/qtuSAdawFck"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-        </section>
+            </div>
 
-        <section id="precios">
+            <div class="desc">
+                <h2>Olvidate de cables</h2>
+                <p>Sin necesidad de conexion electrica puedes llevarlo ha cualquier lugar sin preocuparte por que se
+                    te ha olvidado la power bank.</p>
+
+            </div>
+
+            <div class="desc">
+                <h2>¡Envio inmediato!</h2>
+                <p>El pedido tardara en prepararse aproximadamente 21 dias y el pedido te llegara VOLANDO!
+                    <i>(Perdon por esta...)</i>
+                </p>
+
+            </div>
+        </div>
+
+        <div id="como-funciona" class="section-background">
+            <p>Ejemplo de su funcionamiento:</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/qtuSAdawFck"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+
+        <section id="precios" class="section-background">
             <div class="producto" id="docena">
                 <div class="level">
                     Docena
                 </div>
                 <h2>10€</h2>
-                <ol>
+                <ul>
                     <li>XXL</li>
                     <li>XL</li>
                     <li>L</li>
                     <li>M</li>
-                </ol>
+                </ul>
                 <button class="btn">Seleccionar</button>
             </div>
             <div class="producto" id="media-docena">
@@ -91,31 +100,34 @@
                     Media docena
                 </div>
                 <h2>6€</h2>
-                <ol>
+                <ul>
                     <li>XXL</li>
                     <li>XL</li>
                     <li>L</li>
                     <li>M</li>
-                </ol>
+                </ul>
                 <button class="btn">Seleccionar</button>
             </div>
             <div class="producto" id="unidad">
                 <div class="level">
-                    unidad
+                    Unidad
                 </div>
                 <h2>price not found </h2>
-                <ol>
+                <ul>
                     <li>Nadie</li>
                     <li>compra</li>
                     <li>una</li>
                     <li>unidad!</li>
-                </ol>
+                </ul>
                 <button class="btn">Seleccionar</button>
             </div>
         </section>
 
     </div>
-</div>
-
 </body>
+
+<footer>
+
+</footer>
+
 </html>
