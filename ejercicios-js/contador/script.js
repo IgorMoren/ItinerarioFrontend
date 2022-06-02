@@ -1,13 +1,10 @@
 let intervalo;
 
 let numInic;
-
 // Esta variable controla si la funcion start() sumara o restara
 let plusMinus = true;
 
-let rapidez = 1000;
-
-
+const rapidez = 1000;
 
 function start() {
     //Manejo del estado de los botones capturados con querySelector
