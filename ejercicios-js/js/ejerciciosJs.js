@@ -11,10 +11,9 @@ const arrNames = [
 	{ id: 4, name: "Sandra" },
 	{ id: 5, name: "Felisa" },
 ];
-function findId(id){
-  return arrNames.filter( name => name.id === id)
+function findId(id) {
+	return arrNames.filter((name) => name.id === id);
 }
-
 
 console.log("Ejercicio 1:", findId(3));
 
@@ -22,14 +21,14 @@ console.log("Ejercicio 1:", findId(3));
 /* Dado un array de valores, devolver un array truthy (sin valores nulos, vacíos, no números, indefinidos o falsos) */
 const arrDirty = [NaN, 0, 5, false, -1, "", undefined, 3, null, "test"];
 
-function findTruthy(){
-  const arrClean = []
-  arrDirty.map( el => {
-    if ( el ){
-      arrClean.push(el)
-    } 
-  } )
-  return arrClean;
+function findTruthy() {
+	const arrClean = [];
+	arrDirty.map((el) => {
+		if (el) {
+			arrClean.push(el);
+		}
+	});
+	return arrClean;
 }
 
 console.log("Ejercicio 2:", findTruthy());
@@ -45,8 +44,8 @@ const arrCities = [
 	{ city: "Jaén", country: "Spain", capital: false },
 ];
 
-function searchCapital(arr){
-  return arr.filter( city => city.capital === false)
+function searchCapital(arr) {
+	return arr.filter((city) => city.capital === false);
 }
 
 console.log("Ejercicio 3:", searchCapital(arrCities));
@@ -57,13 +56,12 @@ const arrNumber1 = [1, 2, 3];
 const arrNumber2 = [1, 2, 3, 4, 5];
 const arrNumber3 = [1, 4, 7, 2];
 
-function findIntersect(...arr){
-  
-  array = arr;
-  
-  result = array.reduce((a, b) => a.filter(c => b.includes(c)));
-  
-  return result
+function findIntersect(...arr) {
+	array = arr;
+
+	result = array.reduce((a, b) => a.filter((c) => b.includes(c)));
+
+	return result;
 }
 
 console.log("Ejercicio 4:", findIntersect(arrNumber1, arrNumber2, arrNumber3));
@@ -82,13 +80,13 @@ const arrCities2 = [
 	{ city: "Jaén", country: "Spain", capital: false },
 ];
 
-function locationSpain (arr){
-  return searchCapital(arr.filter( city => city.country === 'Spain')).map( ({city: x, isSpain}) => ({ city: x, isSpain: true}));
-};
+function locationSpain(arr) {
+	return searchCapital(arr.filter((city) => city.country === "Spain")).map(
+		({ city: x, isSpain }) => ({ city: x, isSpain: true })
+	);
+}
 
-
-console.log('Ejercicio 5:', locationSpain(arrCities2))
-    
+console.log("Ejercicio 5:", locationSpain(arrCities2));
 
 /* Ejercicio 6 */
 /* Crea una función que redondee un número float a un número específico de decimales. 
@@ -100,8 +98,6 @@ const roundedResult = roundTo(2.123, 2);
 console.log(roundedResult); // 2.12 
 const roundedResult = roundTo(1.123456789, 6);
 console.log(roundedResult); // 1.123457 */
-
-
 
 /* Ejercicio 7 */
 /* Crea una función que retorne los campos de un objeto que equivalgan a un valor “falsy” después de ser ejecutados por una función específica.
@@ -140,7 +136,6 @@ Ejemplo de uso de la función:
 const myObject = { NamE: 'Charles', ADDress: 'Home Street' };
 const myObjLowercase = toLowercaseKeys(myObject);
 console.log(myObjLowercase); // { name: 'Charles', address: 'Home Street' } */
-
 
 //hint: Formas de recorrer un objeto
 
