@@ -11,9 +11,10 @@ const arrNames = [
 	{ id: 4, name: "Sandra" },
 	{ id: 5, name: "Felisa" },
 ];
-function findId(id) {
-	return arrNames.filter((name) => name.id === id);
+function findId(id){
+  return arrNames.filter( name => name.id === id)
 }
+
 
 console.log("Ejercicio 1:", findId(3));
 
@@ -21,14 +22,14 @@ console.log("Ejercicio 1:", findId(3));
 /* Dado un array de valores, devolver un array truthy (sin valores nulos, vacíos, no números, indefinidos o falsos) */
 const arrDirty = [NaN, 0, 5, false, -1, "", undefined, 3, null, "test"];
 
-function findTruthy() {
-	const arrClean = [];
-	arrDirty.map((el) => {
-		if (el) {
-			arrClean.push(el);
-		}
-	});
-	return arrClean;
+function findTruthy(){
+  const arrClean = []
+  arrDirty.map( el => {
+    if ( el ){
+      arrClean.push(el)
+    } 
+  } )
+  return arrClean;
 }
 
 console.log("Ejercicio 2:", findTruthy());
@@ -44,8 +45,8 @@ const arrCities = [
 	{ city: "Jaén", country: "Spain", capital: false },
 ];
 
-function searchCapital(arr) {
-	return arr.filter((city) => city.capital === false);
+function searchCapital(arr){
+  return arr.filter( city => city.capital === false)
 }
 
 console.log("Ejercicio 3:", searchCapital(arrCities));
@@ -56,12 +57,13 @@ const arrNumber1 = [1, 2, 3];
 const arrNumber2 = [1, 2, 3, 4, 5];
 const arrNumber3 = [1, 4, 7, 2];
 
-function findIntersect(...arr) {
-	array = arr;
-
-	result = array.reduce((a, b) => a.filter((c) => b.includes(c)));
-
-	return result;
+function findIntersect(...arr){
+  
+  array = arr;
+  
+  result = array.reduce((a, b) => a.filter(c => b.includes(c)));
+  
+  return result
 }
 
 console.log("Ejercicio 4:", findIntersect(arrNumber1, arrNumber2, arrNumber3));
@@ -80,13 +82,13 @@ const arrCities2 = [
 	{ city: "Jaén", country: "Spain", capital: false },
 ];
 
-function locationSpain(arr) {
-	return searchCapital(arr.filter((city) => city.country === "Spain")).map(
-		({ city: x, isSpain }) => ({ city: x, isSpain: true })
-	);
-}
+function locationSpain (arr){
+  return searchCapital(arr.filter( city => city.country === 'Spain')).map( ({city: x, isSpain}) => ({ city: x, isSpain: true}));
+};
 
-console.log("Ejercicio 5:", locationSpain(arrCities2));
+
+console.log('Ejercicio 5:', locationSpain(arrCities2))
+    
 
 /* Ejercicio 6 */
 /* Crea una función que redondee un número float a un número específico de decimales. 
@@ -99,6 +101,15 @@ console.log(roundedResult); // 2.12
 const roundedResult = roundTo(1.123456789, 6);
 console.log(roundedResult); // 1.123457 */
 
+function roundResult(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
+
+console.log( 'Ejercicio 6:',roundResult( 2.123, 2));
+
+console.log('Ejercicio 6:', roundResult( 1.123456789, 6));
+
+
 /* Ejercicio 7 */
 /* Crea una función que retorne los campos de un objeto que equivalgan a un valor “falsy” después de ser ejecutados por una función específica.
 La fundación debe tener dos parámetros:
@@ -110,6 +121,34 @@ const result = returnFalsyValues({ a: 1, b: '2', c: 3 }, x => typeof x === 'stri
 console.log(result); // {a: 1, c: 3} */
 
 //hint: Pasarle a una funcion otra funcion
+
+function returnFalsyValues( obj, func, type ) {
+  
+  let myObject = new Object();
+  
+  let myKey = '';
+  
+  for (const key in obj){
+    //console.log(`${key}: ${obj[key]}`)
+    
+    if ( func( obj[key], type ))
+         
+      key = myKey;
+    myObject.myKey = obj[key]
+    
+  }
+  console.log(myObject)
+}
+function typeOf(value, type){
+  if (typeof value === type){
+    return true;
+  } else return false;
+}
+
+const resultFalsy = returnFalsyValues({ a: 1, b: '2', c: 3 }, typeOf, 'string')
+
+//console.log('Ejercicio 7:', resultFalsy); // {a: 1, c: 3} */
+
 
 /* Ejercicio 8 */
 /* Crea una función que convierta un número de bytes en un formato con valores legibles ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
@@ -136,6 +175,7 @@ Ejemplo de uso de la función:
 const myObject = { NamE: 'Charles', ADDress: 'Home Street' };
 const myObjLowercase = toLowercaseKeys(myObject);
 console.log(myObjLowercase); // { name: 'Charles', address: 'Home Street' } */
+
 
 //hint: Formas de recorrer un objeto
 
