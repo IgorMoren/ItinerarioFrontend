@@ -59,9 +59,9 @@ const arrNumber3 = [1, 4, 7, 2];
 
 function findIntersect(...arr){
   
-  array = arr;
+  newArr = arr;
   
-  result = array.reduce((a, b) => a.filter(c => b.includes(c)));
+  result = newArr.reduce((a, b) => a.filter(c => b.includes(c)));
   
   return result
 }
@@ -104,8 +104,11 @@ console.log(roundedResult); // 1.123457 */
 function roundResult(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
-
-console.log( 'Ejercicio 6:',roundResult( 2.123, 2));
+console.log('Valor inicial:', 2.123, 'Uds redondeo:', 2)
+console.log('Primer paso:', Number(2.123+'e'+2))
+console.log('Tras redondeo con Math.round:', Number(Math.round(2.123+'e2')))
+console.log('Se aplica exponencial -2 (uds redondeo):', Number(Math.round(2.123+'e2')+'e-2'))
+console.log( 'Ejercicio 6:', roundResult( 2.123, 2));
 
 console.log('Ejercicio 6:', roundResult( 1.123456789, 6));
 
@@ -122,32 +125,39 @@ console.log(result); // {a: 1, c: 3} */
 
 //hint: Pasarle a una funcion otra funcion
 
-function returnFalsyValues( obj, func, type ) {
-  
-  let myObject = new Object();
-  
-  let myKey = '';
-  
-  for (const key in obj){
-    //console.log(`${key}: ${obj[key]}`)
-    
-    if ( func( obj[key], type ))
-         
-      key = myKey;
-    myObject.myKey = obj[key]
-    
-  }
-  console.log(myObject)
-}
-function typeOf(value, type){
-  if (typeof value === type){
-    return true;
-  } else return false;
-}
+//Hacer un bucle que evalue los valueArr y extraiga los que no cumplan con x => typeof x === 'string'
 
-const resultFalsy = returnFalsyValues({ a: 1, b: '2', c: 3 }, typeOf, 'string')
+//https://www.thecodingwalrus.com/js/javascript-for-loop-alternatives-2/
+// function returnFalsyValues(obj, callback){
+  
+//   const newObj = new Object();
+  
+//   for (let prop in obj){
+    
+//     if(!callback(obj[prop])){
+//       newObj[prop] = obj[prop];      
+//     }    
+//   }
+//   return newObj
+// }
 
-//console.log('Ejercicio 7:', resultFalsy); // {a: 1, c: 3} */
+// const resultFalsy = returnFalsyValues({ a: 1, b: '2', c: 3 }, x => typeof x === 'string')
+
+// console.log('Ejercicio 7 - Viejuno:', resultFalsy);
+// Copiar obj:
+// https://platzi.com/blog/como-copiar-objetos-en-javascript-sin-morir-en-el-intento/?utm_source=google&utm_medium=paid&utm_campaign=17446514363&utm_adgroup=&utm_content=&gclid=CjwKCAjw-8qVBhANEiwAfjXLriqtfzwfQIO1Fjs8N2hMt_Y79OmYH-nTC10Ry7aF0ESA7dNUqzY2WBoC93MQAvD_BwE&gclsrc=aw.ds
+
+//Duda? Es mejor hacerlo asi, con una copia del objeto o pasarle a Object.entries(obj)
+
+function returnFalsyValues(obj, callback){  
+  let newObj = JSON.parse(JSON.stringify(obj))
+  Object.entries(newObj).forEach(([key, value]) => {
+    if(callback(value)){
+      delete newObj[key]
+    }
+  })  
+  return newObj
+}
 
 
 /* Ejercicio 8 */
@@ -168,6 +178,20 @@ console.log(result); // -12.145GB */
 
 //Bastante largo
 
+function formatBytes(bytes, decimals = 3) {
+    if (bytes === 0) return '0 Bytes';
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+const resultBytes = formatBytes(204845646546546);
+console.log('Ejercicio 8:', resultBytes); // 1KB
+
+
 /* Ejercicio 9 */
 /* Crea una función que a partir de un objeto de entrada, retorne un objeto asegurándose que las claves del objeto estén en lowercase.
 La función debe tener un objeto como único parámetro.
@@ -176,8 +200,29 @@ const myObject = { NamE: 'Charles', ADDress: 'Home Street' };
 const myObjLowercase = toLowercaseKeys(myObject);
 console.log(myObjLowercase); // { name: 'Charles', address: 'Home Street' } */
 
+const myObj = { NamE: 'Charles', ADDress: 'Home Street' };
 
-//hint: Formas de recorrer un objeto
+// function toLowerCaseKeys( obj ) {  
+//   const newObj = new Object();  
+//   for (let prop in obj){
+//     //Me entra duda y no he encontrado lo contrario pero ¿las claves de objeto siempre son strings?Si si eliminar sig linea
+//     if (typeof prop !== 'string') { return }
+//     newObj[prop.toLowerCase()] = obj[prop];    
+//   }
+//   return newObj;
+// }
+// const myObjectToLower = toLowerCaseKeys(myObj)
+// console.log('Ejercicio 9:', myObjectToLower)
+
+function toLowerCaseKeys2 ( obj ) {
+  let newObj = new Object(); 
+  Object.entries(obj).forEach(([key, value]) => {
+    newObj[key.toLowerCase()] = value;
+  })  
+  return newObj
+}
+console.log('Ejercicio 9 otra manera:', toLowerCaseKeys2(myObj))
+
 
 /* Ejercicio 10 */
 /* Crea una función que elimine las etiquetas html o xml de un string.
@@ -188,6 +233,13 @@ const result = removeHTMLTags('<div><span>lorem</span> <strong>ipsum</strong></d
 console.log(result); // lorem ipsum */
 //Uso de reg-ex
 
+function removeTags( tagString ){
+  const regex = /(<([^>]+)>)/ig;  
+  return tagString.replace(regex, '')
+}
+const resultNoTags = removeTags('<div><span>lorem</span> <strong>ipsum</strong></div>' )
+console.log('Ejercicio 10:', resultNoTags);
+
 /* Ejercicio 11 */
 /* Crea una función que tome un array como parametro y lo divida en arrays nuevos con tantos elementos como sean especificados.
 La función debe tener dos parámetros:
@@ -196,4 +248,16 @@ El segundo parámetro es el número de elementos que deben tener los arrays en l
 Ejemplo de uso de la función:
 const result = splitArrayIntoChunks([1, 2, 3, 4, 5, 6, 7], 3);
 console.log(result); // [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7 ] ] */
-//Puede ser que sea largo
+
+function splitArrayIntoChunks(arr, chunk) {
+	let newArr = [];
+
+	for (let i = 0; i < arr.length; i += chunk) {
+		newArr.push(arr.slice(i, i + chunk));
+	}
+	return newArr;
+}
+
+const chunkedArr = splitArrayIntoChunks([1, 2, 3, 4, 5, 6, 8], 3);
+
+console.log("Ejercicio 11:", chunkedArr);
