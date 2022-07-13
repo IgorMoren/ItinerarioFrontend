@@ -11,28 +11,27 @@ const arrNames = [
 	{ id: 4, name: "Sandra" },
 	{ id: 5, name: "Felisa" },
 ];
-function findId(id){
-  return arrNames.filter( name => name.id === id)
-}
+const objFind = (id) => arrNames.find((name) => name.id === id);
 
-
-console.log("Ejercicio 1:", findId(3));
+console.log("Ejercicio 1:", objFind(3));
 
 /* Ejercicio 2 */
 /* Dado un array de valores, devolver un array truthy (sin valores nulos, vacíos, no números, indefinidos o falsos) */
 const arrDirty = [NaN, 0, 5, false, -1, "", undefined, 3, null, "test"];
 
-function findTruthy(){
-  const arrClean = []
-  arrDirty.map( el => {
-    if ( el ){
-      arrClean.push(el)
-    } 
-  } )
-  return arrClean;
-}
+// function findTruthy(){
+//   const arrClean = []
+//   arrDirty.map( el => {
+//     if ( el ){
+//       arrClean.push(el)
+//     }
+//   } )
+//   return arrClean;
+// }
 
-console.log("Ejercicio 2:", findTruthy());
+const truArr = (arr) => arr.filter((val) => val);
+
+console.log("Ejercicio 2:", truArr(arrDirty));
 
 /* Ejercicio 3 */
 /* Dado un array de ciudades, sacar todas las ciudades de España que no sean capitales */
@@ -45,8 +44,8 @@ const arrCities = [
 	{ city: "Jaén", country: "Spain", capital: false },
 ];
 
-function searchCapital(arr){
-  return arr.filter( city => city.capital === false)
+function searchCapital(arr) {
+	return arr.filter((city) => !city.capital && city.country === "Spain");
 }
 
 console.log("Ejercicio 3:", searchCapital(arrCities));
@@ -57,13 +56,11 @@ const arrNumber1 = [1, 2, 3];
 const arrNumber2 = [1, 2, 3, 4, 5];
 const arrNumber3 = [1, 4, 7, 2];
 
-function findIntersect(...arr){
-  
-  newArr = arr;
-  
-  result = newArr.reduce((a, b) => a.filter(c => b.includes(c)));
-  
-  return result
+function findIntersect(...arr) {
+	return arr.reduce((a, b) => {
+		//console.log({ a, b });
+		return a.filter((c) => b.includes(c));
+	});
 }
 
 console.log("Ejercicio 4:", findIntersect(arrNumber1, arrNumber2, arrNumber3));
@@ -82,13 +79,13 @@ const arrCities2 = [
 	{ city: "Jaén", country: "Spain", capital: false },
 ];
 
-function locationSpain (arr){
-  return searchCapital(arr.filter( city => city.country === 'Spain')).map( ({city: x, isSpain}) => ({ city: x, isSpain: true}));
-};
+function locationSpain(arr) {
+	return arr
+		.filter((city) => !city.capital)
+		.map(({ city, country }) => ({ city, isSpain: country === "Spain" }));
+}
 
-
-console.log('Ejercicio 5:', locationSpain(arrCities2))
-    
+console.log("Ejercicio 5:", locationSpain(arrCities2));
 
 /* Ejercicio 6 */
 /* Crea una función que redondee un número float a un número específico de decimales. 
@@ -102,16 +99,20 @@ const roundedResult = roundTo(1.123456789, 6);
 console.log(roundedResult); // 1.123457 */
 
 function roundResult(value, decimals) {
-  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+	// return Number(`${Math.round(`${value}e${decimals}`)}e-${decimals}`);
+	return Math.round(value * 10 ** decimals) / 10 ** decimals;
+	//return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
-console.log('Valor inicial:', 2.123, 'Uds redondeo:', 2)
-console.log('Primer paso:', Number(2.123+'e'+2))
-console.log('Tras redondeo con Math.round:', Number(Math.round(2.123+'e2')))
-console.log('Se aplica exponencial -2 (uds redondeo):', Number(Math.round(2.123+'e2')+'e-2'))
-console.log( 'Ejercicio 6:', roundResult( 2.123, 2));
+/* console.log("Valor inicial:", 2.123, "Uds redondeo:", 2);
+console.log("Primer paso:", Number(2.123 + "e" + 2));
+console.log("Tras redondeo con Math.round:", Number(Math.round(2.123 + "e2")));
+console.log(
+	"Se aplica exponencial -2 (uds redondeo):",
+	Number(Math.round(2.123 + "e2") + "e-2")
+); */
+console.log("Ejercicio 6:", roundResult(2.123, 2));
 
-console.log('Ejercicio 6:', roundResult( 1.123456789, 6));
-
+console.log("Ejercicio 6:", roundResult(1.123456789, 6));
 
 /* Ejercicio 7 */
 /* Crea una función que retorne los campos de un objeto que equivalgan a un valor “falsy” después de ser ejecutados por una función específica.
@@ -129,14 +130,14 @@ console.log(result); // {a: 1, c: 3} */
 
 //https://www.thecodingwalrus.com/js/javascript-for-loop-alternatives-2/
 // function returnFalsyValues(obj, callback){
-  
+
 //   const newObj = new Object();
-  
+
 //   for (let prop in obj){
-    
+
 //     if(!callback(obj[prop])){
-//       newObj[prop] = obj[prop];      
-//     }    
+//       newObj[prop] = obj[prop];
+//     }
 //   }
 //   return newObj
 // }
@@ -149,16 +150,32 @@ console.log(result); // {a: 1, c: 3} */
 
 //Duda? Es mejor hacerlo asi, con una copia del objeto o pasarle a Object.entries(obj)
 
-function returnFalsyValues(obj, callback){  
-  let newObj = JSON.parse(JSON.stringify(obj))
-  Object.entries(newObj).forEach(([key, value]) => {
-    if(callback(value)){
-      delete newObj[key]
-    }
-  })  
-  return newObj
-}
+// function returnFalsyValues(obj, callback){
+//   //let newObj = JSON.parse(JSON.stringify(obj))
+//   // let newObj = {...obj}
+//   Object.entries(newObj).forEach(([key, value]) => {
+//     if(callback(value)){
+//       delete newObj[key]
+//     }
+//   })
+//   return newObj
+// }
 
+const falsys = (obj, callback) => {
+	return Object.entries(obj)
+		.filter(([_key, value]) => !callback(value))
+		.reduce((prev, [key, _value]) => {
+			//console.log(key, obj[key]);
+			prev[key] = obj[key];
+			//console.log(prev);
+			return prev;
+		}, {});
+};
+
+console.log(
+	"Ejercicio 7:",
+	falsys({ a: 1, b: "2", c: 3 }, (x) => typeof x === "string")
+);
 
 /* Ejercicio 8 */
 /* Crea una función que convierta un número de bytes en un formato con valores legibles ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
@@ -179,18 +196,17 @@ console.log(result); // -12.145GB */
 //Bastante largo
 
 function formatBytes(bytes, decimals = 3) {
-    if (bytes === 0) return '0 Bytes';
+	if (bytes === 0) return "0 Bytes";
 
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+	const k = 1024;
+	const dm = decimals < 0 ? 0 : decimals;
+	const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+	const i = Math.floor(Math.log(bytes) / Math.log(k));
+	return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 }
-const resultBytes = formatBytes(204845646546546);
-console.log('Ejercicio 8:', resultBytes); // 1KB
-
+const resultBytes = formatBytes(20484876876875);
+console.log("Ejercicio 8:", resultBytes); // 1KB
 
 /* Ejercicio 9 */
 /* Crea una función que a partir de un objeto de entrada, retorne un objeto asegurándose que las claves del objeto estén en lowercase.
@@ -200,29 +216,58 @@ const myObject = { NamE: 'Charles', ADDress: 'Home Street' };
 const myObjLowercase = toLowercaseKeys(myObject);
 console.log(myObjLowercase); // { name: 'Charles', address: 'Home Street' } */
 
-const myObj = { NamE: 'Charles', ADDress: 'Home Street' };
-
-// function toLowerCaseKeys( obj ) {  
-//   const newObj = new Object();  
+// function toLowerCaseKeys( obj ) {
+//   const newObj = new Object();
 //   for (let prop in obj){
 //     //Me entra duda y no he encontrado lo contrario pero ¿las claves de objeto siempre son strings?Si si eliminar sig linea
 //     if (typeof prop !== 'string') { return }
-//     newObj[prop.toLowerCase()] = obj[prop];    
+//     newObj[prop.toLowerCase()] = obj[prop];
 //   }
 //   return newObj;
 // }
 // const myObjectToLower = toLowerCaseKeys(myObj)
 // console.log('Ejercicio 9:', myObjectToLower)
 
-function toLowerCaseKeys2 ( obj ) {
-  let newObj = new Object(); 
-  Object.entries(obj).forEach(([key, value]) => {
-    newObj[key.toLowerCase()] = value;
-  })  
-  return newObj
-}
-console.log('Ejercicio 9 otra manera:', toLowerCaseKeys2(myObj))
+const myObj = { NamE: "Charles", ADDress: "Home Street" };
 
+function toLowerCaseKeys2(obj) {
+	let newObj = new Object();
+	Object.entries(obj).forEach(([key, value]) => {
+		newObj[key.toLowerCase()] = value;
+	});
+	return newObj;
+}
+
+/* const falsys = (obj, callback) => {
+	return Object.entries(obj)
+		.filter(([_key, value]) => !callback(value))
+		.reduce((prev, [key, _value]) => {
+			//console.log(key, obj[key]);
+			prev[key] = obj[key];
+			//console.log(prev);
+			return prev;
+		}, {});
+}; */
+
+const flatKey = (obj) => {
+	return Object.entries(obj).reduce((prev, [key, value]) => {
+		prev[key.toLowerCase()] = value;
+		return prev;
+	}, {});
+};
+const flatKey2 = (obj) => {
+	return Object.entries(obj).reduce((prev, [key]) => {
+		prev[key.toLowerCase()] = obj[key];
+		return prev;
+	}, {});
+};
+
+const arrayPrueba = [1,2,3]
+
+//Realizarlo con reduce() ejercicio 6
+//console.log("Ejercicio 9:", toLowerCaseKeys2(myObj));
+console.log("Ejercicio 9.2:", flatKey(myObj));
+console.log("Ejercicio 9.2:", flatKey2(myObj));
 
 /* Ejercicio 10 */
 /* Crea una función que elimine las etiquetas html o xml de un string.
@@ -233,12 +278,14 @@ const result = removeHTMLTags('<div><span>lorem</span> <strong>ipsum</strong></d
 console.log(result); // lorem ipsum */
 //Uso de reg-ex
 
-function removeTags( tagString ){
-  const regex = /(<([^>]+)>)/ig;  
-  return tagString.replace(regex, '')
+function removeTags(tagString) {
+	const regex = /(<([^>]+)>)/gi;
+	return tagString.replace(regex, "");
 }
-const resultNoTags = removeTags('<div><span>lorem</span> <strong>ipsum</strong></div>' )
-console.log('Ejercicio 10:', resultNoTags);
+const resultNoTags = removeTags(
+	"<div><span>lorem</span> <strong>ipsum</strong></div>"
+);
+console.log("Ejercicio 10:", resultNoTags);
 
 /* Ejercicio 11 */
 /* Crea una función que tome un array como parametro y lo divida en arrays nuevos con tantos elementos como sean especificados.
